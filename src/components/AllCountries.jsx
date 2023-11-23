@@ -165,15 +165,15 @@ export default function AllCountries() {
           </div>
         </div>
       </section>
-      <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-10 xl:grid-cols-4 xl:gap-x-[74px] xl:gap-y-[72px] mx-[54px] dark:bg-[#202C36]">
+      <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-10 x:grid-cols-3 xl:grid-cols-4 xl:gap-x-[74px] xl:gap-y-[72px] mx-[54px] dark:bg-[#202C36]">
         {countriesToDisplay.map((c, idx) => (
-          <Link to={`/country/${c.ccn3}`}>
+          <Link to={`/country/${c.cca2}`}>
             <li
-              className="bg-white h-[336px] rounded-md overflow-hidden list-none shadow dark:bg-[#2B3844] dark:text-white"
+              className="bg-white max-w-[267px] h-[336px] mx-auto rounded-md overflow-hidden list-none shadow dark:bg-[#2B3844] dark:text-white"
               key={idx}>
               <img
                 key={idx}
-                className="w-full h-[160px]"
+                className="w-full max-w-[267px] h-[160px]"
                 src={c.flags.png}
                 alt={c.name.common}
               />

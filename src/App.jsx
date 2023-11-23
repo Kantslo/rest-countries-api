@@ -12,10 +12,10 @@ function App() {
 
   return (
     <>
-      <div className="bg-[#FAFAFA] dark:bg-[#202C36] font-nunito pb-16 min-h-screen">
+      <div className="bg-[#FAFAFA] dark:bg-[#202C36] font-nunito min-h-screen">
         <header className="flex items-center justify-between h-20 px-4 bg-white shadow dark:bg-[#2B3844] md:px-20">
           <Link to="/">
-            <h1 className="text-[#111517] font-extrabold text-[14px] leading-5 dark:text-[white]">
+            <h1 className="text-[#111517] font-extrabold text-[14px] leading-5 dark:text-[white] md:leading-normal md:text-[24px]">
               Where in the world?
             </h1>
           </Link>
@@ -23,7 +23,7 @@ function App() {
             onClick={() => {
               toggleDarkMode();
             }}
-            className="flex items-center gap-2 dark:text-[white]">
+            className="flex items-center gap-2 dark:text-[white] md:text-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -46,7 +46,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<AllCountries />} />
-            <Route path="/country/:ccn3" element={<CountryDetails />} />
+            <Route path="/country/:cca2" element={<CountryDetails />} />
           </Routes>
         </main>
       </div>

@@ -4,13 +4,13 @@ import axios from "axios";
 
 export default function Country() {
   const [country, setCountry] = useState([]);
-  const { ccn3 } = useParams();
+  const { cca2 } = useParams();
   const navigate = useNavigate();
 
   const getCountryByCode = async () => {
     try {
       const res = await axios.get(
-        `https://restcountries.com/v3.1/alpha/${ccn3}`
+        `https://restcountries.com/v3.1/alpha/${cca2}`
       );
       setCountry(res.data);
       console.log(country);
@@ -25,7 +25,7 @@ export default function Country() {
 
   useEffect(() => {
     getCountryByCode();
-  }, [ccn3]);
+  }, [cca2]);
 
   return (
     <div className="dark:bg-[#202C36] md:mx-20 flex flex-col justify-start mx-7">
@@ -56,56 +56,58 @@ export default function Country() {
         console.log(c);
 
         return (
-          <div className="flex flex-col m-auto items-left">
+          <div className="flex flex-col items-left xl:justify-center xl:flex-row xl:gap-x-[144px] sm:m-auto">
             <div>
               <img
-                className="overflow-hidden rounded-md xl:w-[560px] w-[320px] xl:h-[400px] h-[230px]"
+                className="overflow-hidden rounded-md xl:min-w-[560px] w-[320px] xl:min-h-[400px] h-[230px] xl:row-span-1"
                 src={c.flags.png}
                 alt={c.flags.alt}
               />
             </div>
-            <div>
+            <div className="xl:grid xl:grid-cols-2 xl:grid-rows-2 xl:mx-auto">
               <div>
-                <h3 className="text-[#111517] dark:text-white text-[22px] font-extrabold mt-11 mb-4">
+                <h3 className="text-[#111517] w-max dark:text-white text-[22px] font-extrabold mt-11 xl:m-0 md:text-[32px]">
                   {c.name.common}
                 </h3>
-                <h4 className="text-[#111517] dark:text-white font-semibold text-[14px] leading-8 flex gap-1">
+                <h4 className="text-[#111517] dark:text-white md:text-[16px] font-semibold text-[14px] leading-8 flex w-max gap-1 mt-4">
                   Native Name:
                   <span className="font-light">
                     {native.length > 0 && c.name.nativeName[native[0]].official}
                   </span>
                 </h4>
-                <h4 className="text-[#111517] dark:text-white font-semibold text-[14px] leading-8 flex gap-1">
+                <h4 className="text-[#111517] dark:text-white font-semibold text-[14px] md:text-[16px] leading-8 flex flex-wrap gap-1">
                   Population:
                   <span className="font-light">
                     {Number(c.population).toLocaleString()}
                   </span>
                 </h4>
-                <h4 className="text-[#111517] dark:text-white font-semibold text-[14px] leading-8 flex gap-1">
+                <h4 className="text-[#111517] dark:text-white font-semibold text-[14px] md:text-[16px] leading-8 flex flex-wrap gap-1">
                   Region:
                   <span className="font-light">{c.region}</span>
                 </h4>
-                <h4 className="text-[#111517] dark:text-white font-semibold text-[14px] leading-8 flex gap-1">
+                <h4 className="text-[#111517] dark:text-white font-semibold text-[14px] md:text-[16px] leading-8 flex flex-wrap gap-1">
                   Sub Region:
                   <span className="font-light">{c.subregion}</span>
                 </h4>
-                <h4 className="text-[#111517] dark:text-white font-semibold text-[14px] leading-8 flex gap-1">
+                <h4 className="text-[#111517] dark:text-white font-semibold text-[14px] md:text-[16px] leading-8 flex flex-wrap gap-1">
                   Capital:
-                  <span className="font-light">{c.capital[0]}</span>
+                  <span className="font-light">
+                    {c.capital && c.capital[0]}
+                  </span>
                 </h4>
               </div>
-              <div>
-                <h4 className="text-[#111517] dark:text-white font-semibold text-[14px] leading-8 flex gap-1">
+              <div className="xl:ml-[100px]">
+                <h4 className="text-[#111517] dark:text-white font-semibold text-[14px] md:text-[16px] leading-8 flex flex-wrap gap-1 xl:mt-[60px]">
                   Top Level Domain:
-                  <span className="font-light">{c.tld[0]}</span>
+                  <span className="font-light">{c.tld && c.tld[0]}</span>
                 </h4>
-                <h4 className="text-[#111517] dark:text-white font-semibold text-[14px] leading-8 flex gap-1">
+                <h4 className="text-[#111517] dark:text-white font-semibold text-[14px] md:text-[16px] leading-8 flex flex-wrap gap-1">
                   Currencies:
                   <span className="font-light">
                     {curr.length > 0 && c.currencies[curr[0]].name}
                   </span>
                 </h4>
-                <h4 className="text-[#111517] dark:text-white font-semibold text-[14px] leading-8 flex gap-1">
+                <h4 className="text-[#111517] dark:text-white font-semibold text-[14px] md:text-[16px] leading-8 flex flex-wrap gap-1">
                   Languages:
                   <span className="font-light">
                     {lang.length > 0 && c.languages[lang[0]]}
@@ -113,7 +115,7 @@ export default function Country() {
                 </h4>
               </div>
               {c.borders && (
-                <div>
+                <div className="xl:col-span-2 xl:mt-10">
                   <h4 className="text-4 dark:text-white text-[#111517] font-semibold leading-6 mt-8 mb-4">
                     Border Countries
                   </h4>
